@@ -1,167 +1,188 @@
 body {
-    margin: 0;
     padding: 0;
-    height: 100vh;
+    margin: 0;
     width: 100vw;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #e5e5f7;
-    /* opacity: 1; */
-    background: url(./blob-scene-haikei.svg);
-    font-family: 'Roboto', sans-serif;
-    color: white;
-    user-select: none;
+    /* flex-direction: column; */
+    font-family: 'Courier New', Courier, monospace;
+    background-color: rgb(241, 241, 255);
+}
+
+* {
+    font-family: 'Courier New', Courier, monospace;
 
 }
 
-.lister {
-    padding: 20px;
-    /* border: 1px solid grey; */
+.noitemAlert {
+    position: absolute;
+    width: 400px;
+    text-align: center;
+    background-color: rgb(255, 217, 217);
+    border-radius: 10px;
+    border: 3px solid rgb(255, 106, 106);
+    padding: 1vh 0;
+    top: 1vh;
+    opacity: 0;
+    transition: .3s ease-in-out;
+    /* animation: hide 3s ease-in-out; */
+    /* display: none; */
+    /* animation-iteration-count: 1; */
+}
+
+.delAlert {
+    position: absolute;
+    width: 400px;
+    text-align: center;
+    background-color: rgb(255, 217, 217);
+    border-radius: 10px;
+    border: 3px solid rgb(255, 106, 106);
+    padding: 1vh 0;
+    top: 1vh;
+    opacity: 0;
+    transition: .3s ease-in-out;
+    /* animation: hide 3s ease-in-out; */
+    /* display: none; */
+    /* animation-iteration-count: 1; */
+}
+
+.addAlert {
+    position: absolute;
+    width: 400px;
+    text-align: center;
+    background-color: rgb(209, 255, 182);
+    border-radius: 10px;
+    border: 3px solid rgb(121, 255, 44);
+    padding: 1vh 0;
+    top: 1vh;
+    opacity: 0;
+    transition: .3s ease-in-out;
+    /* animation: hide 3s ease-in-out; */
+    /* display: none; */
+    /* animation-iteration-count: 1; */
+}
+
+.todoList {
+    padding: 4vh 0;
+    box-shadow: 0px 1px 5px rgb(179, 179, 179);
+    width: 500px;
     height: auto;
-    width: 60vw;
-    box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.75);
-    -webkit-box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.75);
-    background: #413c5e;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-}
-
-.lister-input {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    height: 200px;
+    box-sizing: border-box;
+    background-color: white;
+    border-radius: 10px;
+    /* width: 50vw; */
 }
 
-.lister-input-input {
-    text-align: center;
-    font-size: 40px;
-    background-color: #413c5e;
+.inputbutton {
+    margin: 4vh 0;
     width: 80%;
-    height: 50px;
-    border: none;
-    /* color: white !important; */
-    border-bottom: 1px solid white;
-    color: white;
+    display: flex;
+    justify-content: center;
 
 }
 
+.input {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    padding-left: 5px;
+    background-color: azure;
+    height: 30px;
+    border: none;
+    width: 50%;
+    transition: 0.3s;
+}
 
-.lister-input-button {
-    font-size: 2vw;
+.input:focus {
+    outline: none;
+    width: 80%;
+}
+
+.input:focus+.button {
+    width: 20%;
+}
+
+.input:focus::placeholder {
+    color: transparent;
+}
+
+.input:focus .inputbutton {
+    outline: 10px solid red;
+}
+
+.button {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background-color: rgb(217, 255, 159);
+    border: none;
+    width: 50%;
+    transition: .3s;
+}
+
+.button:hover {
+    background-color: rgb(154, 196, 93);
+    color: white;
+}
+
+.title {
+    font-size: 2rem;
+}
+
+.items {
+    font-size: 1.1rem;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
+    margin: 5vh 0
+}
+
+.item {
+    list-style-type: none;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1% 0;
+    /* display: flex; */
+    /* justify-content: space-between; */
+}
+
+.item-check {
+    /* background-color: rgb(255, 196, 196); */
+    border: 0.5px solid rgb(255, 196, 196);
+    /* padding: 5px; */
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 10px;
-    color: black;
-    width: 40%;
-    height: 5vw;
-    background-color: white;
-    border: none;
-    box-shadow: 0px 5px 0px 5px #0C1C30;
-    -webkit-box-shadow: 0px 5px 0px 5px #0C1C30;
-    -moz-box-shadow: 0px 5px 0px 5px #0C1C30;
-
+    width: 20px;
+    height: 20px;
+    /* padding: 2px; */
+    border-radius: 100%;
 }
 
-.lister-input-button:active {
-    box-shadow: none;
-    border: none;
-    transform: scale(.95);
+.item-check:hover {
+    background-color: rgb(255, 196, 196);
 }
 
-.lister-input-input:focus {
-    outline: none;
-    color: white;
+
+.clear {
+    font-size: 1.4rem;
+    color: red;
 }
 
-.lister-input-input::placeholder {
-    color: #aaa;
-    font-size: 3vw;
-}
-
-.lister-input-input:focus::placeholder {
-    color: transparent;
-}
-
-.lister-items-items {
-    font-size: 25px;
-    /* height: 100%; */
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    /* width: 60%; */
-    padding: 0;
-}
-
-.lister-items-item {
-    display: flex;
-    justify-content: space-between;
-    margin: 10px 0;
-    align-items: center;
-    /* border-bottom: .1px solid white; */
-    list-style: none;
-    width: 80%;
-}
-
-.lister-input-search {
-    margin: 10px 0;
-    width: 50%;
-    height: 30px;
-    text-align: center;
-    background-color: transparent;
-    border: 0;
-    border-bottom: .5px solid white;
-}
-
-.lister-input-search:focus {
-    outline: none;
-    color: white;
-}
-
-.lister-input-search:focus::placeholder {
-    color: transparent;
-}
-
-.fas {
-    /* height: 40px; */
-}
-
-.fas:hover {
-    color: rgb(255, 82, 82);
-}
-
-.fas:active {
-    transform: scale(.8);
-}
-
-@media (max-width:537px) {
-
-    .lister {
-        padding: 0;
-        height: auto;
+@keyframes hide {
+    0% {
+        opacity: 1;
     }
 
-    .lister-input-input::placeholder {
-        font-size: 3vw;
-    }
-
-    .lister-input-button {
-        width: 40%;
-        height: 10%;
-    }
-
-    .lister-input-input {
-        font-size: 20px;
-    }
-
-    .lister-items-items {
-        font-size: 20px;
+    100% {
+        opacity: 0;
     }
 }

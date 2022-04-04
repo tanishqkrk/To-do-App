@@ -1,33 +1,61 @@
-let form = document.querySelector('.lister');
-let subBtn = document.querySelector('#lister-input-button');
-let list = document.querySelector('.lister-items-items');
+let form = document.querySelector('.todoList');
+let button = document.querySelector('.button');
+let check = document.querySelector('.item-check');
+let input = document.querySelector('.input');
 
-list.addEventListener('click', deleteItem);
 
-form.addEventListener('submit', addItem);
+
+form.addEventListener('submit', addItem)
+
 function addItem(e){
     e.preventDefault();
-    let newItem = document.querySelector('#lister-input-input').value;
-    // console.log(1);
-    let deleteBtn = document.createElement('span');
-    deleteBtn.className = 'fas fa-trash';
-    let li = document.createElement('li');
-    li.className = 'lister-items-item';
-    li.appendChild(document.createTextNode(newItem));
-    li.appendChild(deleteBtn);
-    console.log(deleteBtn);
-    // console.log(list);
-    // console.log(li);
-    list.appendChild(li);
-    form.reset();
+        if (input.value == ''){
+            displayWarningAlert();
+        }
+        else if(input.value != ''){
+            addItemToList();
+            itemAddedAlert()
+            input.value = ''
+        }
+}
+function displayWarningAlert(){
+    document.querySelector('.noitemAlert').style.opacity = '1';
+    setTimeout(function(){document.querySelector('.noitemAlert').style.opacity = '0'}, 1000)
+}
+function itemAddedAlert(){
+    document.querySelector('.addAlert').style.opacity = '1';
+    setTimeout(function(){document.querySelector('.addAlert').style.opacity = '0'}, 1000)
+}
+function delAlert(){
+    document.querySelector('.delAlert').style.opacity = '1';
+    setTimeout(function(){document.querySelector('.delAlert').style.opacity = '0'}, 1000)
+}
+function addItemToList(e){
+    let list = document.querySelector('.items');
+    let newItem = document.createElement('li');
+    let newIcon = document.createElement('i');
+    newItem.innerText = input.value;
+    newItem.className = 'item';
+    newIcon.className = 'fa-solid fa-check item-check'
+    newItem.append(newIcon);
+    list.append(newItem);
+    newItem.addEventListener('click', e=>{
+        if(e.target.classList.contains('item-check')){
+            // console.log('1');
+            let itemToDelete = e.target.parentElement;
+            list.removeChild(itemToDelete);
+            delAlert();
+        }
+    })
 }
 
-function deleteItem(e){
-    if (e.target.classList.contains('fas')){
-        // console.log(1);
-        // if(confirm('Are you sure you wanna delete this?')){
-            let li = e.target.parentElement;
-            list.removeChild(li);
-        } 
-    // }
-}
+
+document.querySelector('.clear').addEventListener('click', e=>{
+    location.reload()
+})
+
+document.addEventListener('keydown',e=>{
+    if (e.key == 'Escape'){
+        input.focus();
+    }
+})
